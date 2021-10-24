@@ -1,10 +1,8 @@
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,7 +32,7 @@ class RestaurantTest {
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    
+
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
     public void adding_item_to_menu_should_increase_menu_size_by_1(){
@@ -56,4 +54,18 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>ordertotal>>>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void adding_item_to_menu_should_increase_ordertotal_by_its_Price(){
+        restaurant.addToMenu("Sizzling brownie",319);
+        restaurant.addToMenu("Vegetable lasagne",200);
+        ArrayList<String> items = new ArrayList<String>();
+        items.add("Sizzling brownie");
+        items.add("Vegetable lasagne");
+
+        int Total = restaurant.OrderTotal(items);
+        assertEquals(519,Total);
+    }
+    //>>>>>>>>>>>>>>>>>>>>>>>>>ordertotal>>>>>>>>>>>>>>>>>>>>>>>
 }
